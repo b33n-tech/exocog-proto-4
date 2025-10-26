@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stack Global – Mini Dashboard + Modules LLM</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Menu latéral rétractable -->
+<nav id="sidebar">
+  <button id="toggleSidebar">☰</button>
+  <ul>
+    <li><a href="#stack1">Stack 1 – Tâches</a></li>
+    <li><a href="#stack2">Stack 2 – Modules</a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- Stack 1 -->
+  <section id="stack1">
+    <header>
+      <h1>🧠 Mini Dashboard Tâches</h1>
+      <p>Ajoute, archive, commente et envoie tes tâches à Stack 2.</p>
+    </header>
+
+    <div class="input-section">
+      <input type="text" id="taskInput" placeholder="Ex : appeler le fournisseur, revoir le doc...">
+      <div class="buttons-row">
+        <button id="addBtn">➕ Ajouter</button>
+        <button id="archiveBtn">📦 Archiver</button>
+      </div>
+
+      <!-- Textarea pour copier le JSON -->
+      <div class="json-input-panel">
+        <h2>📥 Copier JSON ici</h2>
+        <textarea id="jsonInput" placeholder="Colle ici ton JSON généré…"></textarea>
+        <button id="sendToStack2Btn">🚀 Envoyer à Stack 2</button>
+      </div>
+
+      <div id="copiedMsg" class="copied-msg" style="display:none;">✅ JSON envoyé et téléchargé !</div>
+    </div>
+
+    <aside class="task-list">
+      <h2>📝 Historique des tâches</h2>
+      <ul id="tasksContainer"></ul>
+    </aside>
+  </section>
+
+  <!-- Stack 2 -->
+  <section id="stack2">
+    <h1>Exo-Cog – Modules LLM</h1>
+
+    <div class="module" id="jalonsModule">
+      <h2>Jalons & Sous-actions</h2>
+      <ul id="jalonsList"></ul>
+    </div>
+
+    <div class="module" id="messagesModule">
+      <h2>Messages / Emails</h2>
+      <table id="messagesTable">
+        <thead>
+          <tr><th>À traiter</th><th>Destinataire</th><th>Sujet</th><th>Texte</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="mail-actions">
+        <select id="mailPromptSelect">
+          <option value="1">Template formel</option>
+          <option value="2">Template amical</option>
+        </select>
+        <button id="generateMailBtn">Générer Mail GPT</button>
+      </div>
+    </div>
+
+    <div class="module" id="rdvModule">
+      <h2>Rendez-vous / Créneaux</h2>
+      <ul id="rdvList"></ul>
+    </div>
+
+    <div class="module" id="autresModule">
+      <h2>Autres ressources</h2>
+      <ul id="autresList"></ul>
+    </div>
+
+    <div class="module" id="livrablesModule">
+      <h2>Livrables à préparer</h2>
+      <ul id="livrablesList"></ul>
+      <div class="livrable-actions">
+        <select id="livrablePromptSelect">
+          <option value="1">Plan détaillé</option>
+          <option value="2">Résumé exécutif</option>
+          <option value="3">Checklist rapide</option>
+        </select>
+        <button id="generateLivrableBtn">Générer contenu LLM</button>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
