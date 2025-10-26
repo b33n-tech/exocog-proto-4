@@ -1,13 +1,17 @@
+/* Global */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background: #f8f9fa;
+  background: #f0f2f5;
   color: #333;
 }
 
+h1 { text-align: center; margin-bottom: 20px; }
+h2 { margin-bottom: 10px; font-size: 1.2rem; }
+
 /* Sidebar */
-#sidebar {
+.sidebar {
   position: fixed;
   left: 0;
   top: 0;
@@ -15,69 +19,53 @@ body {
   height: 100%;
   background: #4a90e2;
   color: white;
-  padding: 20px;
+  padding: 10px;
   transition: transform 0.3s;
 }
-#sidebar.hidden { transform: translateX(-100%); }
-#sidebar ul { list-style: none; padding: 0; margin-top: 20px; }
-#sidebar li { margin: 15px 0; }
-#sidebar a { color: white; text-decoration: none; }
-#toggleSidebar {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
+.sidebar nav ul { list-style: none; padding: 0; }
+.sidebar nav ul li { margin: 15px 0; }
+.sidebar nav ul li a { color: white; text-decoration: none; }
+#toggleSidebar { margin-bottom: 20px; }
 
-/* Main */
+/* Main content */
 main { margin-left: 240px; padding: 20px; transition: margin-left 0.3s; }
-#sidebar.hidden + main { margin-left: 20px; }
+.section { display: flex; flex-wrap: wrap; gap: 20px; }
 
-/* Stack 1 */
-.input-section input, .input-section textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
-  margin-bottom: 10px;
-}
+/* Input section */
+.input-section { flex: 2; display: flex; flex-direction: column; gap: 10px; }
+.input-section input, .input-section textarea { padding: 10px; border-radius: 6px; border: 1px solid #ccc; width: 100%; }
+.buttons-row { display: flex; gap: 10px; }
+.input-section button { cursor: pointer; border: none; border-radius: 6px; padding: 8px; background: #4a90e2; color: white; font-weight: bold; }
+.input-section button:hover { background: #357ABD; }
 
-.buttons-row, .json-input-panel button, .mail-actions, .livrable-actions {
-  display: flex;
-  gap: 10px;
-}
+/* Prompts */
+.prompt-panel { display: flex; flex-wrap: wrap; gap: 10px; }
+.prompt-panel button { background: #ff7f50; }
+.prompt-panel button:hover { background: #e0693f; }
 
-textarea#jsonInput { min-height: 120px; font-family: monospace; }
+/* Task list */
+.task-list { flex: 1; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); max-height: 70vh; overflow-y: auto; }
+.task-list ul { list-style: none; padding: 0; }
+.task-item { padding: 5px; border-bottom: 1px solid #eee; }
+.task-text { font-weight: bold; cursor: pointer; }
+.comment-section { display: flex; flex-direction: column; gap: 5px; }
+.comment-list li { font-size: 0.9rem; color: #555; }
+.comment-input { display: flex; gap: 5px; }
+.comment-input input { flex: 1; padding: 5px; }
+.comment-input button { background: #ff7f50; color: white; }
 
-.input-section button, .json-input-panel button {
-  padding: 10px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background: #4a90e2;
-  color: white;
-}
-.input-section button:hover, .json-input-panel button:hover { background: #357ABD; }
+/* Stack 2 modules */
+.module { background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 20px; }
+.module:hover { transform: translateY(-2px); transition: transform 0.2s; }
+.livrable-note { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ddd; resize: vertical; min-height: 50px; }
 
-.task-list, .module {
-  background: white;
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
+/* Tables */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 8px; border: 1px solid #eee; }
+th { background: #00aaff; color: white; }
 
-/* Table Stack 2 */
-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-th, td { border: 1px solid #eee; padding: 10px; }
-th { background: #00aaff; color: white; font-weight: 600; }
-tbody tr:nth-child(odd) { background: #f9f9f9; }
-
-/* Buttons Stack 2 */
-button { transition: all 0.2s; }
-button:hover { opacity: 0.9; transform: translateY(-2px); }
-
-@media(max-width:800px){
+/* Responsive */
+@media(max-width: 900px){
   main { margin-left: 0; }
-  #sidebar { transform: translateX(-100%); position: absolute; z-index: 100; }
+  .sidebar { transform: translateX(-100%); }
 }
