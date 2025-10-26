@@ -3,26 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stack Global – Mini Dashboard + Modules LLM</title>
+  <title>Mini Dashboard Global</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Menu latéral rétractable -->
-<nav id="sidebar">
+<div id="sidebar" class="sidebar">
   <button id="toggleSidebar">☰</button>
-  <ul>
-    <li><a href="#stack1">Stack 1 – Tâches</a></li>
-    <li><a href="#stack2">Stack 2 – Modules</a></li>
-  </ul>
-</nav>
+  <nav>
+    <ul>
+      <li><a href="#tasksSection">Tâches & Commentaires</a></li>
+      <li><a href="#modulesSection">Modules LLM</a></li>
+    </ul>
+  </nav>
+</div>
 
 <main>
-  <!-- Stack 1 -->
-  <section id="stack1">
+  <!-- Stack 1 : Tâches & commentaires -->
+  <section id="tasksSection" class="section">
     <header>
       <h1>🧠 Mini Dashboard Tâches</h1>
-      <p>Ajoute, archive, commente et envoie tes tâches à Stack 2.</p>
+      <p>Ajoute, archive, commente et envoie tes tâches à un LLM.</p>
+      <div class="llm-selector">
+        <label for="llmSelect">Choisir LLM :</label>
+        <select id="llmSelect">
+          <option value="https://chat.openai.com/">ChatGPT</option>
+          <option value="https://chat.deepseek.com/">DeepSeek Chat</option>
+          <option value="https://chat.mistral.ai/chat">Mistral Chat</option>
+          <option value="https://claude.ai/">Claude AI</option>
+          <option value="https://www.perplexity.ai/">Perplexity</option>
+        </select>
+      </div>
     </header>
 
     <div class="input-section">
@@ -30,16 +41,16 @@
       <div class="buttons-row">
         <button id="addBtn">➕ Ajouter</button>
         <button id="archiveBtn">📦 Archiver</button>
+        <button id="clearBtn">🧹 Tout nettoyer</button>
       </div>
 
-      <!-- Textarea pour copier le JSON -->
-      <div class="json-input-panel">
-        <h2>📥 Copier JSON ici</h2>
-        <textarea id="jsonInput" placeholder="Colle ici ton JSON généré…"></textarea>
-        <button id="sendToStack2Btn">🚀 Envoyer à Stack 2</button>
+      <div class="prompt-panel">
+        <h2>⚡ Prompts</h2>
+        <div id="promptsContainer"></div>
       </div>
 
-      <div id="copiedMsg" class="copied-msg" style="display:none;">✅ JSON envoyé et téléchargé !</div>
+      <textarea id="jsonTextarea" placeholder="Colle ici ton JSON…" rows="6"></textarea>
+      <button id="sendToStack2Btn">📤 Envoyer à Stack 2</button>
     </div>
 
     <aside class="task-list">
@@ -48,9 +59,9 @@
     </aside>
   </section>
 
-  <!-- Stack 2 -->
-  <section id="stack2">
-    <h1>Exo-Cog – Modules LLM</h1>
+  <!-- Stack 2 : Modules LLM -->
+  <section id="modulesSection" class="section">
+    <h1>📊 Modules LLM</h1>
 
     <div class="module" id="jalonsModule">
       <h2>Jalons & Sous-actions</h2>
