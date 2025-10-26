@@ -1,0 +1,83 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f9fa;
+  color: #333;
+}
+
+/* Sidebar */
+#sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100%;
+  background: #4a90e2;
+  color: white;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+#sidebar.hidden { transform: translateX(-100%); }
+#sidebar ul { list-style: none; padding: 0; margin-top: 20px; }
+#sidebar li { margin: 15px 0; }
+#sidebar a { color: white; text-decoration: none; }
+#toggleSidebar {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Main */
+main { margin-left: 240px; padding: 20px; transition: margin-left 0.3s; }
+#sidebar.hidden + main { margin-left: 20px; }
+
+/* Stack 1 */
+.input-section input, .input-section textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.buttons-row, .json-input-panel button, .mail-actions, .livrable-actions {
+  display: flex;
+  gap: 10px;
+}
+
+textarea#jsonInput { min-height: 120px; font-family: monospace; }
+
+.input-section button, .json-input-panel button {
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background: #4a90e2;
+  color: white;
+}
+.input-section button:hover, .json-input-panel button:hover { background: #357ABD; }
+
+.task-list, .module {
+  background: white;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Table Stack 2 */
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th, td { border: 1px solid #eee; padding: 10px; }
+th { background: #00aaff; color: white; font-weight: 600; }
+tbody tr:nth-child(odd) { background: #f9f9f9; }
+
+/* Buttons Stack 2 */
+button { transition: all 0.2s; }
+button:hover { opacity: 0.9; transform: translateY(-2px); }
+
+@media(max-width:800px){
+  main { margin-left: 0; }
+  #sidebar { transform: translateX(-100%); position: absolute; z-index: 100; }
+}
